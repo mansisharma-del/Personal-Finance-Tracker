@@ -98,41 +98,54 @@ function saveData() {
 }
 
 // ===============================
-// Summary
+// Animation Function
 // ===============================
 
-// function updateSummary() {
+function animateValue(element, start, end, duration = 1200) {
 
-//     let totalIncome = 0;
+    let startTime = null;
 
-//     let totalExpense = 0;
+    function animation(currentTime) {
 
-//     transactions.forEach(item => {
+        if (!startTime) startTime = currentTime;
 
-//         if (item.type === "income") {
+        const progress = Math.min((currentTime - startTime) / duration, 1);
 
-//             totalIncome += item.amount;
+        const value = Math.floor(progress * (end - start) + start);
 
-//         } else {
+        element.innerHTML = "₹" + value.toLocaleString();
 
-//             totalExpense += item.amount;
+        if (progress < 1) {
+            requestAnimationFrame(animation);
+        }
+    }
 
-//         }
+    requestAnimationFrame(animation);
+}
 
-//     });
+function updateSummary() {
+
+    let totalIncome = 0;
+    let totalExpense = 0;
+
+    transactions.forEach(item => {
+
+        if (item.type === "income") {
+            totalIncome += item.amount;
+        } else {
+            totalExpense += item.amount;
+        }
+
+    });
 
     const totalBalance = totalIncome - totalExpense;
 
-    balance.innerHTML = "₹" + totalBalance.toLocaleString();
-
-    income.innerHTML = "₹" + totalIncome.toLocaleString();
-
-    expense.innerHTML = "₹" + totalExpense.toLocaleString();
-
-    saving.innerHTML = "₹" + totalBalance.toLocaleString();
+    animateValue(balance, 0, totalBalance);
+    animateValue(income, 0, totalIncome);
+    animateValue(expense, 0, totalExpense);
+    animateValue(saving, 0, totalBalance);
 
 }
-
 // ===============================
 // Display Transactions
 // ===============================
@@ -599,3 +612,49 @@ function updateCharts(){
     }
 
 }
+let monthlyBudget =
+Number(localStorage.getItem("budget")) || 30000;
+
+const budgetBtn =
+document.getElementById("setBudgetBtn");
+
+budgetBtn.addEventListener("click",()=>{
+
+const value = prompt("Enter Monthly Budget");
+
+if(value){
+
+monthlyBudget = Number(value);
+
+localStorage.setItem("budget",monthlyBudget);
+
+updateBudget();
+
+}
+
+});
+
+function updateBudget(){
+
+let expenseAmount=0;
+
+transactions.forEach(item=>{
+
+if(item.type==="expense"){
+
+expenseAmount += item.amount;
+
+}
+
+});
+
+const percent=Math.min((expenseAmount/monthlyBudget)*100,100);
+
+document.getElementById("budgetAmount").innerHTML=
+`₹${expenseAmount.toLocaleString()} / ₹${monthlyBudget.toLocaleString()}`;
+
+document.getElementById("progressBar").style.width=
+percent+"%";
+
+}
+updateBudget();
