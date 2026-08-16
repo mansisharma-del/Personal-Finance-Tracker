@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FinanceFlow | Personal Finance Tracker</title>
+
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+
+
+    <!-- ==========================================
+         GOOGLE FONT
+    =========================================== -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+
+    <!-- ==========================================
+         FONT AWESOME
+    =========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+    <!-- ==========================================
+         MAIN CSS
+    =========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="css/style.css">
+
+
+    <!-- ==========================================
+         RESPONSIVE CSS
+    =========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="css/responsive.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- ==========================================
+         SIDEBAR
+    =========================================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <img src="assets/favicon.png" alt="FinanceFlow Logo">
+
+            <h2>
+                FinanceFlow
+            </h2>
+
+        </div>
+
+
+        <ul>
+
+            <li class="active">
+
+                <i class="fa-solid fa-house"></i>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </li>
+
+
+            <li>
+
+                <i class="fa-solid fa-chart-pie"></i>
+
+                <span>
+                    Analytics
+                </span>
+
+            </li>
+
+
+            <li>
+
+                <i class="fa-solid fa-money-bill-transfer"></i>
+
+                <span>
+                    Transactions
+                </span>
+
+            </li>
+
+
+            <li>
+
+                <i class="fa-solid fa-download"></i>
+
+                <span>
+                    Export
+                </span>
+
+            </li>
+
+
+            <li>
+
+                <i class="fa-solid fa-gear"></i>
+
+                <span>
+                    Settings
+                </span>
+
+            </li>
+
+        </ul>
+
+    </aside>
+
+
+
+    <!-- ==========================================
+         MAIN CONTENT
+    =========================================== -->
+
+    <main class="main">
+
+
+        <!-- ======================================
+             NAVBAR
+        ======================================= -->
+
+        <header class="navbar">
+
+
+            <div class="welcome">
+
+                <h2>
+                    Welcome Back 👋
+                </h2>
+
+                <p>
+                    Track your money smartly.
+                </p>
+
+            </div>
+
+
+            <div class="nav-right">
+
+
+                <!-- Theme -->
+
+                <button id="themeBtn">
+
+                    <i class="fa-solid fa-moon"></i>
+
+                </button>
+
+
+                <!-- Profile -->
+
+                <img
+                    src="https://i.pravatar.cc/50"
+                    class="profile"
+                    alt="Profile">
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ==========================================
+             SUMMARY CARDS
+        =========================================== -->
+
+        <section class="cards">
+
+
+            <!-- TOTAL BALANCE -->
+
+            <div class="card balance">
+
+                <div>
+
+                    <h4>
+                        Total Balance
+                    </h4>
+
+                    <h2 id="balance">
+                        ₹0
+                    </h2>
+
+                </div>
+
+                <i class="fa-solid fa-wallet"></i>
+
+            </div>
+
+
+            <!-- TOTAL INCOME -->
+
+            <div class="card income">
+
+                <div>
+
+                    <h4>
+                        Total Income
+                    </h4>
+
+                    <h2 id="income">
+                        ₹0
+                    </h2>
+
+                </div>
+
+                <i class="fa-solid fa-arrow-trend-up"></i>
+
+            </div>
+
+
+            <!-- TOTAL EXPENSE -->
+
+            <div class="card expense">
+
+                <div>
+
+                    <h4>
+                        Total Expense
+                    </h4>
+
+                    <h2 id="expense">
+                        ₹0
+                    </h2>
+
+                </div>
+
+                <i class="fa-solid fa-arrow-trend-down"></i>
+
+            </div>
+
+
+            <!-- SAVINGS -->
+
+            <div class="card savings">
+
+                <div>
+
+                    <h4>
+                        Savings
+                    </h4>
+
+                    <h2 id="saving">
+                        ₹0
+                    </h2>
+
+                </div>
+
+                <i class="fa-solid fa-piggy-bank"></i>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==========================================
+             MONTHLY BUDGET
+        =========================================== -->
+
+        <section class="budget-card">
+
+
+            <div class="budget-header">
+
+
+                <div>
+
+                    <h3>
+                        🎯 Monthly Budget
+                    </h3>
+
+                    <p>
+                        Keep your spending under control
+                    </p>
+
+                </div>
+
+
+                <button id="setBudgetBtn">
+
+                    <i class="fa-solid fa-wallet"></i>
+
+                    Set Budget
+
+                </button>
+
+            </div>
+
+
+            <h2 id="budgetAmount">
+
+                ₹0 / ₹30,000
+
+            </h2>
+
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar"
+                    id="progressBar">
+                </div>
+
+            </div>
+
+
+            <p id="budgetPercent">
+
+                0% Used
+
+            </p>
+
+        </section>
+
+
+
+        <!-- ==========================================
+             MAIN CHARTS
+        =========================================== -->
+
+        <section class="charts">
+
+
+            <!-- INCOME VS EXPENSE -->
+
+            <div class="chart-box">
+
+                <h3>
+                    Income vs Expense
+                </h3>
+
+                <canvas id="barChart"></canvas>
+
+            </div>
+
+
+            <!-- EXPENSE DISTRIBUTION -->
+
+            <div class="chart-box">
+
+                <h3>
+                    Expense Distribution
+                </h3>
+
+                <canvas id="pieChart"></canvas>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==========================================
+             STEP 1 — MONTHLY ANALYTICS
+        =========================================== -->
+
+        <section class="monthly-analytics">
+
+
+            <!-- HEADER -->
+
+            <div class="analytics-header">
+
+
+                <div>
+
+                    <h2>
+                        Monthly Analytics
+                    </h2>
+
+                    <p>
+                        Track your income and expenses
+                        over the last 6 months.
+                    </p>
+
+                </div>
+
+
+                <div class="analytics-badge">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    Last 6 Months
+
+                </div>
+
+            </div>
+
+
+            <!-- MONTHLY TREND CHART -->
+
+            <div class="monthly-chart">
+
+                <canvas id="monthlyTrendChart"></canvas>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==========================================
+             STEP 2 — CATEGORY-WISE SPENDING INSIGHTS
+        =========================================== -->
+
+        <section class="category-insights">
+
+
+            <!-- ======================================
+                 INSIGHTS HEADER
+            ======================================= -->
+
+            <div class="insights-header">
+
+
+                <div>
+
+                    <span class="section-label">
+                        Spending Analysis
+                    </span>
+
+
+                    <h2>
+                        Category-wise Spending
+                    </h2>
+
+
+                    <p>
+                        Understand where your money is going.
+                    </p>
+
+                </div>
+
+
+                <div class="insights-icon">
+
+                    <i class="fa-solid fa-chart-column"></i>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ======================================
+                 INSIGHT SUMMARY CARDS
+            ======================================= -->
+
+            <div class="insight-summary">
+
+
+                <!-- TOTAL SPENDING -->
+
+                <div class="insight-stat">
+
+
+                    <div class="stat-icon blue">
+
+                        <i class="fa-solid fa-wallet"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Total Spending
+                        </span>
+
+
+                        <strong id="categoryTotalExpense">
+                            ₹0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- HIGHEST SPENDING -->
+
+                <div class="insight-stat">
+
+
+                    <div class="stat-icon red">
+
+                        <i class="fa-solid fa-fire"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Highest Spending
+                        </span>
+
+
+                        <strong id="topCategory">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- TOP CATEGORY SHARE -->
+
+                <div class="insight-stat">
+
+
+                    <div class="stat-icon green">
+
+                        <i class="fa-solid fa-chart-pie"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Top Category Share
+                        </span>
+
+
+                        <strong id="topCategoryPercentage">
+                            0%
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ======================================
+                 SPENDING MESSAGE
+            ======================================= -->
+
+            <div
+                class="spending-message"
+                id="spendingMessage">
+
+
+                <i class="fa-solid fa-lightbulb"></i>
+
+
+                <span>
+
+                    Add some expenses to see
+                    your spending insights.
+
+                </span>
+
+            </div>
+
+
+
+            <!-- ======================================
+                 CATEGORY LIST
+            ======================================= -->
+
+            <div
+                class="category-list"
+                id="categoryList">
+
+
+                <!--
+
+                    JavaScript will automatically
+                    generate category-wise spending
+                    information here.
+
+                -->
+
+
+                <div class="category-empty">
+
+                    <i class="fa-solid fa-chart-pie"></i>
+
+                    <div>
+                        Add expenses to see
+                        category-wise insights.
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==========================================
+             TRANSACTION CONTROLS
+        =========================================== -->
+
+        <section class="controls">
+
+
+            <!-- SEARCH -->
+
+            <input
+                type="text"
+                placeholder="Search transaction..."
+                id="search">
+
+
+            <!-- FILTER -->
+
+            <select id="filter">
+
+                <option value="all">
+                    All Transactions
+                </option>
+
+                <option value="income">
+                    Income
+                </option>
+
+                <option value="expense">
+                    Expense
+                </option>
+
+            </select>
+
+
+            <!-- ADD TRANSACTION -->
+
+            <button id="addBtn">
+
+                <i class="fa-solid fa-plus"></i>
+
+                Add Transaction
+
+            </button>
+
+        </section>
+
+
+
+        <!-- ==========================================
+             TRANSACTIONS TABLE
+        =========================================== -->
+
+        <section class="transactions">
+
+
+            <div class="table-header">
+
+
+                <h2>
+                    Recent Transactions
+                </h2>
+
+
+                <button id="csvBtn">
+
+                    <i class="fa-solid fa-file-csv"></i>
+
+                    Export CSV
+
+                </button>
+
+            </div>
+
+
+
+            <table>
+
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Date
+                        </th>
+
+                        <th>
+                            Title
+                        </th>
+
+                        <th>
+                            Category
+                        </th>
+
+                        <th>
+                            Type
+                        </th>
+
+                        <th>
+                            Amount
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="transactionTable">
+
+                    <!--
+                        Transactions will be
+                        inserted by JavaScript
+                    -->
+
+                </tbody>
+
+
+            </table>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ==========================================
+         ADD TRANSACTION MODAL
+    =========================================== -->
+
+    <div
+        class="modal"
+        id="modal">
+
+
+        <div class="modal-content">
+
+
+            <h2>
+                Add Transaction
+            </h2>
+
+
+            <form id="transactionForm">
+
+
+                <!-- TRANSACTION TITLE -->
+
+                <input
+                    type="text"
+                    id="title"
+                    placeholder="Transaction Title"
+                    required>
+
+
+                <!-- AMOUNT -->
+
+                <input
+                    type="number"
+                    id="amount"
+                    placeholder="Amount"
+                    min="1"
+                    required>
+
+
+                <!-- DATE -->
+
+                <input
+                    type="date"
+                    id="date"
+                    required>
+
+
+                <!-- CATEGORY -->
+
+                <select id="category">
+
+
+                    <option value="Salary">
+                        Salary
+                    </option>
+
+
+                    <option value="Food">
+                        Food
+                    </option>
+
+
+                    <option value="Shopping">
+                        Shopping
+                    </option>
+
+
+                    <option value="Rent">
+                        Rent
+                    </option>
+
+
+                    <option value="Travel">
+                        Travel
+                    </option>
+
+
+                    <option value="Investment">
+                        Investment
+                    </option>
+
+
+                    <option value="Bills">
+                        Bills
+                    </option>
+
+
+                    <option value="Others">
+                        Others
+                    </option>
+
+
+                </select>
+
+
+
+                <!-- TRANSACTION TYPE -->
+
+                <select id="type">
+
+
+                    <option value="income">
+                        Income
+                    </option>
+
+
+                    <option value="expense">
+                        Expense
+                    </option>
+
+
+                </select>
+
+
+
+                <!-- MODAL BUTTONS -->
+
+                <div class="modal-buttons">
+
+
+                    <button
+                        type="submit">
+
+                        <i class="fa-solid fa-check"></i>
+
+                        Save
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        id="closeBtn">
+
+                        <i class="fa-solid fa-xmark"></i>
+
+                        Cancel
+
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==========================================
+         CHART.JS
+    =========================================== -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/chart.js">
+    </script>
+
+
+
+    <!-- ==========================================
+         JAVASCRIPT FILES
+    =========================================== -->
+
+    <script src="js/storage.js"></script>
+
+    <script src="js/charts.js"></script>
+
+    <script src="js/app.js"></script>
+
+
+</body>
+
+</html>
